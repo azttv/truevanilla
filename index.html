@@ -12,7 +12,7 @@
     body {
       margin: 0;
       font-family: 'Minecraftia', sans-serif;
-      background: linear-gradient(135deg, #1e3c72, #2a5298);
+      background: linear-gradient(135deg, #00379e, #15bdff);
       color: white;
       text-align: center;
       overflow-x: hidden;
@@ -20,24 +20,8 @@
 
     h1 {
       font-size: 3rem;
-      margin: 40px 0;
+      margin: 0px 0;
       animation: fadeIn 1.5s ease forwards;
-      transform: translateY(-10px);
-      position: relative;
-      z-index: 2;
-    }
-
-    /* Effet parallax léger */
-    h1::after {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      background: rgba(255,255,255,0.05);
-      transform: translateY(-10px);
-      z-index: -1;
     }
 
     .step {
@@ -53,13 +37,23 @@
 
     .step h2 {
       font-size: 2rem;
-      margin-bottom: 20px;
+      margin-bottom: 10px;
+    }
+
+    .label {
+      display: inline-block;
+      background: rgba(255, 255, 255, 0.1);
+      color: #ffffff;
+      padding: 20px 125px;
+      border-radius: 20px;
+      margin-bottom: 15px;
+      font-size: 2rem;
     }
 
     .step1 { animation: fadeIn 2s ease forwards; }
     .step2 { animation: fadeIn 2.5s ease forwards; }
 
-    button, .discord-btn {
+    .discord-btn {
       background: #4fc3f7;
       color: #000;
       font-family: 'Minecraftia', sans-serif;
@@ -73,13 +67,25 @@
       display: inline-block;
     }
 
-    button:hover, .discord-btn:hover {
+    .discord-btn:hover {
       background: #81d4fa;
       transform: scale(1.05);
     }
 
-    footer {
-      margin: 50px 0;
+    code {
+      display: block;
+      background: rgba(255, 255, 255, 0.1);
+      padding: 10px;
+      margin: 15px auto;
+      border-radius: 8px;
+      width: fit-content;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+
+    code:hover {
+      background: rgba(255, 255, 255, 0.2);
     }
 
     @keyframes fadeIn {
@@ -89,25 +95,33 @@
   </style>
 </head>
 <body>
+  <img src="https://i.imgur.com/uSGvWJT.gif" height="250px" width="250px">
   <h1>Comment rejoindre le serveur ?</h1>
 
   <div class="step step1">
-    <h2>1 - Première étape</h2>
+    <div class="label">📜 1ère étape</div>
     <p>Tout d'abord, vous devez rejoindre le discord pour pouvoir lier votre compte Minecraft à votre compte Discord !</p>
-    <a href="https://discord.gg/HefFTCS4cp" target="_blank" class="discord-btn">Discord</a>
+    <a href="https://discord.gg/HefFTCS4cp" target="_blank" class="discord-btn">🔗 Discord</a>
     <p>Ensuite, rejoignez le serveur Minecraft pour recevoir votre code qui vous permettra de lier vos comptes.</p>
+    <img src="https://i.imgur.com/ybLQMso.png" height="337px" width="299px">
   </div>
 
   <div class="step step2">
-    <h2>2 - Deuxième étape</h2>
+    <div class="label">📜 2ème étape</div>
     <p>Une fois vos comptes liés, vous devrez créer un compte sur le serveur en créant un mot de passe. Pour cela, vous devrez faire cette commande :</p>
-    <code>/register motdepasse motdepasse</code>
+    <code onclick="copyToClipboard('/register motdepasse motdepasse')">⌨️ /register motdepasse motdepasse</code>
     <p>Une fois votre compte créé, vous pourrez enfin jouer ! Lors de votre prochaine connexion, vous devrez vous connecter avec votre mot de passe en faisant :</p>
-    <code>/login motdepasse</code>
+    <code onclick="copyToClipboard('/login motdepasse')">⌨️ /login motdepasse</code>
   </div>
 
-  <footer>
-    <a href="https://discord.gg/HefFTCS4cp" target="_blank" class="discord-btn">Discord</a>
-  </footer>
+  <script>
+    function copyToClipboard(text) {
+      navigator.clipboard.writeText(text).then(() => {
+        alert('Commande copiée : ' + text);
+      }).catch(err => {
+        console.error('Erreur lors de la copie : ', err);
+      });
+    }
+  </script>
 </body>
 </html>
