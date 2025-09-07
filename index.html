@@ -5,10 +5,15 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Rejoindre le serveur</title>
   
-  <!-- Police Minecraftia -->
+  <!-- Polices -->
   <link href="https://fonts.cdnfonts.com/css/minecraftia" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@400;600&display=swap" rel="stylesheet">
 
   <style>
+    html {
+      scroll-behavior: smooth; /* Défilement fluide */
+    }
+
     body {
       margin: 0;
       font-family: 'Minecraftia', sans-serif;
@@ -18,10 +23,35 @@
       overflow-x: hidden;
     }
 
-    h1 {
+    /* Conteneur du titre + logo */
+    .title-container {
+      position: relative;
+      display: inline-block;
+      margin-top: 80px;
+      margin-bottom: 80px;
+    }
+
+    .title-container img {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      z-index: 0;
+      opacity: 0.6;
+    }
+
+    .title-container h1 {
       font-size: 3rem;
-      margin: 0px 0;
+      margin: 0;
+      position: relative;
+      z-index: 1;
+      color: white;
+      text-shadow: 0 0 8px rgba(0,0,0,0.6);
+      backdrop-filter: blur(3px);
+      padding: 10px 20px;
+      border-radius: 12px;
       animation: fadeIn 1.5s ease forwards;
+      display: inline-block;
     }
 
     .step {
@@ -88,6 +118,49 @@
       background: rgba(255, 255, 255, 0.2);
     }
 
+    /* Boutons flottants */
+    .floating-buttons {
+      position: fixed;
+      bottom: 50px;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      gap: 350px;
+      z-index: 1000;
+    }
+
+    .floating-buttons a {
+      background: #ffffff;
+      color: #00379e;
+      font-family: 'Minecraftia', sans-serif;
+      padding: 12px 20px;
+      border-radius: 15px;
+      text-decoration: none;
+      font-size: 1rem;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+      transition: transform 0.2s, background 0.3s;
+    }
+
+    .floating-buttons a:hover {
+      background: #e0f7fa;
+      transform: scale(1.05);
+      text-align: center;
+    }
+
+    /* Footer fixe */
+    footer {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      background: rgba(0,0,0,0.6);
+      color: white;
+      text-align: center;
+      font-family: 'Comfortaa', sans-serif;
+      font-size: 0.9rem;
+      padding: 10px;
+    }
+
     @keyframes fadeIn {
       from { opacity: 0; transform: translateY(20px); }
       to { opacity: 1; transform: translateY(0); }
@@ -95,24 +168,65 @@
   </style>
 </head>
 <body>
-  <img src="https://i.imgur.com/uSGvWJT.gif" height="250px" width="250px">
-  <h1>Comment rejoindre le serveur ?</h1>
+  <div class="title-container">
+    <img src="https://i.imgur.com/uSGvWJT.gif" height="250px" width="250px" alt="Logo">
+    <h1>Comment rejoindre le serveur ?</h1>
+  </div>
 
-  <div class="step step1">
+  <div class="step step1" id="etape1">
     <div class="label">📜 1ère étape</div>
     <p>Tout d'abord, vous devez rejoindre le discord pour pouvoir lier votre compte Minecraft à votre compte Discord !</p>
     <a href="https://discord.gg/HefFTCS4cp" target="_blank" class="discord-btn">🔗 Discord</a>
     <p>Ensuite, rejoignez le serveur Minecraft pour recevoir votre code qui vous permettra de lier vos comptes.</p>
     <img src="https://i.imgur.com/ybLQMso.png" height="337px" width="299px">
+    <p>Gardez ce code de côté, et envoyez-le au bot du serveur Discord qui se trouve en premier dans la liste des membres : "True Vanilla V3".</p>
+    <img src="https://i.imgur.com/vSFCbKQ.gif" height="270px" width="480px">
   </div>
 
-  <div class="step step2">
-    <div class="label">📜 2ème étape</div>
-    <p>Une fois vos comptes liés, vous devrez créer un compte sur le serveur en créant un mot de passe. Pour cela, vous devrez faire cette commande :</p>
-    <code onclick="copyToClipboard('/register motdepasse motdepasse')">⌨️ /register motdepasse motdepasse</code>
-    <p>Une fois votre compte créé, vous pourrez enfin jouer ! Lors de votre prochaine connexion, vous devrez vous connecter avec votre mot de passe en faisant :</p>
-    <code onclick="copyToClipboard('/login motdepasse')">⌨️ /login motdepasse</code>
+<div class="step step2" id="etape2">
+  <div class="label">📜 2ème étape</div>
+  <p>Une fois vos comptes liés, vous devrez créer un compte sur le serveur en créant un mot de passe. Pour cela, vous devrez faire cette commande :</p>
+  <code onclick="copyToClipboard('/register motdepasse motdepasse')">⌨️ /register motdepasse motdepasse</code>
+  <p>Une fois votre compte créé, vous pourrez enfin jouer ! Lors de votre prochaine connexion, vous devrez vous connecter avec votre mot de passe en faisant :</p>
+  <code onclick="copyToClipboard('/login motdepasse')">⌨️ /login motdepasse</code>
+</div>
+
+<!-- Note Attention attachée à droite -->
+<div class="note">
+  ⚠️ Attention !<br>
+  Remplacez <i>"motdepasse"</i> par votre propre mot de passe.<br><br>
+  Votre mot de passe doit contenir au minimum 4 caractères !
+</div>
+
+<style>
+  .note {
+    position: relative;
+    background: rgba(255, 0, 0, 0.507);
+    color: white;
+    font-weight: bold;
+    padding: 12px 18px;
+    border-radius: 12px;
+    width: 200px;
+    left: 498px;
+    bottom: 85px;
+    margin: -300px auto 220px auto; /* collé à la step */
+    text-align: center;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+    font-size: 0.95rem;
+    animation: fadeIn 1.5s ease forwards;
+  }
+</style>
+
+  <!-- Boutons flottants -->
+  <div class="floating-buttons">
+    <a href="#etape1">1ère étape</a>
+    <a href="#etape2">2ème étape</a>
   </div>
+
+  <!-- Footer -->
+  <footer>
+    Si vous avez un problème, n'hésitez pas à ouvrir un ticket sur le Discord !
+  </footer>
 
   <script>
     function copyToClipboard(text) {
