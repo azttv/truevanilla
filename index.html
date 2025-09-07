@@ -1,78 +1,176 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>True Vanilla</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Comment rejoindre True Vanilla ?</title>
+
+  <!-- Préchargement de la police (placez Minecraftia.ttf dans ./fonts/) -->
+  <link rel="preload" href="fonts/Minecraftia.ttf" as="font" type="font/ttf" crossorigin>
+
   <style>
-    body {
-      margin: 0;
-      font-family: Arial, sans-serif;
-      background: linear-gradient(135deg, #1e1e2f, #2e2e47);
-      color: #f2f2f2;
+    /* Import local font Minecraftia (mettre le fichier Minecraftia.ttf dans ./fonts/) */
+    @font-face {
+      font-family: "Minecraftia";
+      src: url("fonts/Minecraftia.ttf") format("truetype");
+      font-weight: normal;
+      font-style: normal;
+      font-display: swap;
+    }
+
+    :root{
+      --bg1: #0f1724;
+      --bg2: #122033;
+      --card: rgba(255,255,255,0.04);
+      --accent: #ffd54a;
+      --muted: #cbd5e1;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html,body {
+      height: 100%;
+      font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+      background: linear-gradient(135deg, var(--bg1), var(--bg2));
+      color: white;
+    }
+
+    /* Layout centré */
+    .wrap {
+      min-height: 100%;
       display: flex;
-      flex-direction: column;
       align-items: center;
       justify-content: center;
-      height: 100vh;
+      padding: 3rem;
+    }
+
+    .panel {
+      width: 100%;
+      max-width: 920px;
+      background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+      border-radius: 14px;
+      padding: 2.25rem;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.6);
+      backdrop-filter: blur(6px);
       text-align: center;
     }
 
+    /* Titre avec font Minecraftia et fondu en entrée (1s) */
     h1 {
-      font-size: 3rem;
-      margin-bottom: 0.5rem;
-      color: #fff176;
+      font-family: "Minecraftia", "Trebuchet MS", Arial, sans-serif;
+      font-size: clamp(2rem, 5.5vw, 3.6rem);
+      line-height: 1;
+      margin-bottom: 0.6rem;
+      color: var(--accent);
+      opacity: 0;
+      transform: translateY(-10px);
+      animation: fadeInTitle 1s ease forwards;
+      text-shadow: 0 4px 18px rgba(0,0,0,0.6);
+    }
+
+    @keyframes fadeInTitle {
+      from { opacity: 0; transform: translateY(-10px); }
+      to   { opacity: 1; transform: translateY(0); }
     }
 
     h2 {
-      font-size: 1.5rem;
-      font-weight: 400;
-      color: #dcdcdc;
+      font-size: 1.05rem;
+      color: var(--muted);
+      margin-bottom: 1.25rem;
+      font-weight: 500;
     }
 
     .card {
-      margin-top: 2rem;
-      padding: 1.5rem 2rem;
-      background: rgba(255, 255, 255, 0.05);
-      border-radius: 12px;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.3);
-      max-width: 600px;
+      margin-top: 1.25rem;
+      padding: 1.25rem;
+      background: var(--card);
+      border-radius: 10px;
+      color: #e6eef8;
+      box-shadow: inset 0 1px 0 rgba(255,255,255,0.02);
+      text-align: left;
     }
 
-    p {
-      font-size: 1rem;
-      line-height: 1.5;
+    .row {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+      margin-top: 0.75rem;
+    }
+
+    .col {
+      flex: 1 1 220px;
+      min-width: 220px;
     }
 
     .btn {
       display: inline-block;
-      margin-top: 1rem;
-      padding: 0.7rem 1.5rem;
-      font-size: 1rem;
-      color: #1e1e2f;
-      background: #fff176;
-      border: none;
+      margin-top: 0.75rem;
+      padding: 0.6rem 1rem;
       border-radius: 8px;
-      cursor: pointer;
+      background: var(--accent);
+      color: #09202a;
+      font-weight: 700;
       text-decoration: none;
-      transition: background 0.3s ease;
+      border: none;
+      cursor: pointer;
+      box-shadow: 0 6px 18px rgba(0,0,0,0.35);
     }
 
-    .btn:hover {
-      background: #ffeb3b;
+    .small {
+      font-size: 0.92rem;
+      color: #c8d8ea;
+    }
+
+    footer {
+      margin-top: 1rem;
+      font-size: 0.82rem;
+      color: #94a3b8;
+    }
+
+    /* Responsive */
+    @media (max-width:600px){
+      .card { padding: 1rem; }
+      .row { flex-direction: column; }
     }
   </style>
 </head>
 <body>
-  <h1>True Vanilla</h1>
-  <h2>Comment rejoindre le serveur ?</h2>
+  <div class="wrap">
+    <main class="panel" role="main" aria-labelledby="main-heading">
+      <h1 id="main-heading">Comment rejoindre True Vanilla ?</h1>
+      <h2>Guide rapide pour te connecter au serveur</h2>
 
-  <div class="card">
-    <p>
-      Pour rejoindre notre serveur, assure-toi d’avoir Minecraft Java Edition installé.<br>
-      Ensuite, ajoute l’adresse IP du serveur dans ton menu multijoueur et connecte-toi !
-    </p>
-    <a href="#" class="btn">Obtenir l'adresse IP</a>
+      <div class="card" aria-live="polite">
+        <p class="small">
+          Suis ces étapes rapides pour rejoindre le serveur True Vanilla.
+        </p>
+
+        <div class="row" style="margin-top:0.75rem;">
+          <div class="col">
+            <h3 style="margin:0 0 0.5rem 0;font-size:1rem;color:var(--accent);font-weight:700;">Étape 1 — Minecraft Java</h3>
+            <p class="small">Assure-toi d'avoir <strong>Minecraft Java Edition</strong> installé et à jour.</p>
+          </div>
+
+          <div class="col">
+            <h3 style="margin:0 0 0.5rem 0;font-size:1rem;color:var(--accent);font-weight:700;">Étape 2 — Ajouter le serveur</h3>
+            <p class="small">Ouvre <em>Multijoueur</em> → <em>Ajouter un serveur</em> et renseigne l'adresse IP fournie par les admins.</p>
+          </div>
+
+          <div class="col">
+            <h3 style="margin:0 0 0.5rem 0;font-size:1rem;color:var(--accent);font-weight:700;">Étape 3 — Connecte-toi</h3>
+            <p class="small">Sélectionne le serveur dans la liste et clique sur <em>Rejoindre</em>.</p>
+          </div>
+        </div>
+
+        <div style="text-align:center;">
+          <a class="btn" href="#" role="button">Obtenir l'adresse IP</a>
+        </div>
+
+        <footer>
+          <p>Besoin d'aide ? Contacte un administrateur sur notre Discord.</p>
+        </footer>
+      </div>
+    </main>
   </div>
 </body>
 </html>
